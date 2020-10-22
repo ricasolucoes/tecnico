@@ -39,8 +39,8 @@
     "require": {
         "php": "^7.4",
         "laravel/framework": "^6.0|^7.0|^8.0",
-        "sierratecnologia/pedreiro": "dev-master",
-        "sierratecnologia/muleta": "dev-master"
+        "sierratecnologia/pedreiro": "^0.4.0",
+        "sierratecnologia/muleta": "^0.4.0"
     },
     "require-dev": {
         "illuminate/database": "^6.0|^7.0|^8.0",
@@ -52,7 +52,7 @@
         "squizlabs/php_codesniffer": "^3.4",
         "codedungeon/phpunit-result-printer": ">=0.27.0",
         "friendsofphp/php-cs-fixer": "^2.16",
-        "vimeo/psalm": "^3.11"
+        "vimeo/psalm": "^4.0"
     },
     "config": {
         "optimize-autoloader": true,
