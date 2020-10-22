@@ -38,7 +38,9 @@
     ],
     "require": {
         "php": "^7.4",
-        "laravel/framework": "^6.0|^7.0|^8.0"
+        "laravel/framework": "^6.0|^7.0|^8.0",
+        "sierratecnologia/pedreiro": "dev-master",
+        "sierratecnologia/muleta": "dev-master"
     },
     "require-dev": {
         "illuminate/database": "^6.0|^7.0|^8.0",
