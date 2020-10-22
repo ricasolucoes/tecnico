@@ -1,0 +1,142 @@
+<?php
+
+namespace {{namespace}}Http\Controllers\Tecnico;
+
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Tecnico\Exceptions\UserNotInGroupException;
+
+class GroupController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        return view('tecnico.index')
+            ->with('groups', auth()->user()->groups);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view('tecnico.create');
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $groupModel = config('tecnico.group_model');
+
+        $group = $groupModel::create([
+            'name' => $request->name,
+            'owner_id' => $request->user()->getKey(),
+        ]);
+        $request->user()->attachGroup($group);
+
+        return redirect(route('groups.index'));
+    }
+
+    /**
+     * Switch to the given group.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function switchGroup($id)
+    {
+        $groupModel = config('tecnico.group_model');
+        $group = $groupModel::findOrFail($id);
+        try {
+            auth()->user()->switchGroup($group);
+        } catch (UserNotInGroupException $e) {
+            abort(403);
+        }
+
+        return redirect(route('groups.index'));
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $groupModel = config('tecnico.group_model');
+        $group = $groupModel::findOrFail($id);
+
+        if (! auth()->user()->isOwnerOfGroup($group)) {
+            abort(403);
+        }
+
+        return view('tecnico.edit')->withGroup($group);
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request $request
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|string',
+        ]);
+
+        $groupModel = config('tecnico.group_model');
+
+        $group = $groupModel::findOrFail($id);
+        $group->name = $request->name;
+        $group->save();
+
+        return redirect(route('groups.index'));
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        $groupModel = config('tecnico.group_model');
+
+        $group = $groupModel::findOrFail($id);
+        if (! auth()->user()->isOwnerOfGroup($group)) {
+            abort(403);
+        }
+
+        $group->delete();
+
+        $userModel = config('tecnico.user_model');
+        $userModel::where('current_group_id', $id)
+                    ->update(['current_group_id' => null]);
+
+        return redirect(route('groups.index'));
+    }
+}

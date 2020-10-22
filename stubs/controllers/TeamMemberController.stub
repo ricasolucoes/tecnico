@@ -1,0 +1,104 @@
+<?php
+
+namespace {{namespace}}Http\Controllers\Tecnico;
+
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+use Illuminate\Support\Facades\Mail;
+use Tecnico\Facades\Tecnico;
+use Tecnico\GroupInvite;
+
+class GroupMemberController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    /**
+     * Show the members of the given group.
+     *
+     * @param  int $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        $groupModel = config('tecnico.group_model');
+        $group = $groupModel::findOrFail($id);
+
+        return view('tecnico.members.list')->withGroup($group);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param int $group_id
+     * @param int $user_id
+     * @return \Illuminate\Http\Response
+     * @internal param int $id
+     */
+    public function destroy($group_id, $user_id)
+    {
+        $groupModel = config('tecnico.group_model');
+        $group = $groupModel::findOrFail($group_id);
+        if (! auth()->user()->isOwnerOfGroup($group)) {
+            abort(403);
+        }
+
+        $userModel = config('tecnico.user_model');
+        $user = $userModel::findOrFail($user_id);
+        if ($user->getKey() === auth()->user()->getKey()) {
+            abort(403);
+        }
+
+        $user->detachGroup($group);
+
+        return redirect(route('groups.index'));
+    }
+
+    /**
+     * @param Request $request
+     * @param int $group_id
+     * @return $this
+     */
+    public function invite(Request $request, $group_id)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $groupModel = config('tecnico.group_model');
+        $group = $groupModel::findOrFail($group_id);
+
+        if (! Tecnico::hasPendingInvite($request->email, $group)) {
+            Tecnico::inviteToGroup($request->email, $group, function ($invite) {
+                Mail::send('tecnico.emails.invite', ['group' => $invite->group, 'invite' => $invite], function ($m) use ($invite) {
+                    $m->to($invite->email)->subject('Invitation to join group '.$invite->group->name);
+                });
+                // Send email to user
+            });
+        } else {
+            return redirect()->back()->withErrors([
+                'email' => 'The email address is already invited to the group.',
+            ]);
+        }
+
+        return redirect(route('groups.members.show', $group->id));
+    }
+
+    /**
+     * Resend an invitation mail.
+     *
+     * @param $invite_id
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function resendInvite($invite_id)
+    {
+        $invite = GroupInvite::findOrFail($invite_id);
+        Mail::send('tecnico.emails.invite', ['group' => $invite->group, 'invite' => $invite], function ($m) use ($invite) {
+            $m->to($invite->email)->subject('Invitation to join group '.$invite->group->name);
+        });
+
+        return redirect(route('groups.members.show', $invite->group));
+    }
+}

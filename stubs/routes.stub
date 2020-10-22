@@ -1,0 +1,22 @@
+
+
+/**
+ * Tecnico routes
+ */
+Route::group(['prefix' => 'groups', 'namespace' => 'Tecnico'], function()
+{
+    Route::get('/', [App\Http\Controllers\Tecnico\GroupController::class, 'index'])->name('groups.index');
+    Route::get('create', [App\Http\Controllers\Tecnico\GroupController::class, 'create'])->name('groups.create');
+    Route::post('groups', [App\Http\Controllers\Tecnico\GroupController::class, 'store'])->name('groups.store');
+    Route::get('edit/{id}', [App\Http\Controllers\Tecnico\GroupController::class, 'edit'])->name('groups.edit');
+    Route::put('edit/{id}', [App\Http\Controllers\Tecnico\GroupController::class, 'update'])->name('groups.update');
+    Route::delete('destroy/{id}', [App\Http\Controllers\Tecnico\GroupController::class, 'destroy'])->name('groups.destroy');
+    Route::get('switch/{id}', [App\Http\Controllers\Tecnico\GroupController::class, 'switchGroup'])->name('groups.switch');
+
+    Route::get('members/{id}', [App\Http\Controllers\Tecnico\GroupMemberController::class, 'show'])->name('groups.members.show');
+    Route::get('members/resend/{invite_id}', [App\Http\Controllers\Tecnico\GroupMemberController::class, 'resendInvite'])->name('groups.members.resend_invite');
+    Route::post('members/{id}', [App\Http\Controllers\Tecnico\GroupMemberController::class, 'invite'])->name('groups.members.invite');
+    Route::delete('members/{id}/{user_id}', [App\Http\Controllers\Tecnico\GroupMemberController::class, 'destroy'])->name('groups.members.destroy');
+
+    Route::get('accept/{token}', [App\Http\Controllers\Tecnico\AuthController::class, 'acceptInvite'])->name('groups.accept_invite');
+});

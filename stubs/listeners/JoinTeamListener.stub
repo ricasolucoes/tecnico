@@ -1,0 +1,22 @@
+<?php
+
+namespace {{namespace}}Listeners\Tecnico;
+
+use Tecnico;
+
+class JoinGroupListener
+{
+    /**
+     * See if the session contains an invite token on login and try to accept it.
+     * @param mixed $event
+     */
+    public function handle($event)
+    {
+        if (session('invite_token')) {
+            if ($invite = Tecnico::getInviteFromAcceptToken(session('invite_token'))) {
+                Tecnico::acceptInvite($invite);
+            }
+            session()->forget('invite_token');
+        }
+    }
+}
