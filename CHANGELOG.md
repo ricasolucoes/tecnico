@@ -1,19 +1,12 @@
-# Changelog
+# Release Notes
 
-#### v6.1.0 `2020-09-11`
-- Add Laravel 8 support
+## [Unreleased](https://github.com/ricasolucoes/tecnico/compare/0.1.1...master)
 
-#### v6.0.3 `2020-08-06`
-- Tecnico class can be resolved through type hinting (If you prefer, you can still use the Facade). Thanks to @rmccullagh.
+### Added
 
-#### v6.0.2 `2020-06-29`
+- 
 
-#### v6.0.1 `2020-06-13`
-- Fixed installation for Laravel 6.17 and below. Thanks to @oliuz.
-- Fixed docs compatibility note.
+## [0.1.0 (2020-07-19)](https://github.com/ricasolucoes/tecnico/compare/...0.1.0)
 
-#### v6.0.0 `2020-06-13`
-- Added Laravel 6 and 7 Support.
-
-#### v2.0.0 `2016-01-04`
-- Added Laravel 5.2 support.
+### Create
+- 
