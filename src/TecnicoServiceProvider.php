@@ -47,7 +47,7 @@ class TecnicoServiceProvider extends ServiceProvider
                     'icon_color'  => 'blue',
                     'label_color' => 'success',
                     'section' => "master",
-                    // 'access' => \App\Models\Role::$ADMIN
+                    // 'access' => \Porteiro\Models\Role::$ADMIN
                 ],
                 // [
                 //     'text'        => 'Root',
@@ -56,7 +56,7 @@ class TecnicoServiceProvider extends ServiceProvider
                 //     'icon_color'  => 'blue',
                 //     'label_color' => 'success',
                 //     'section' => "master",
-                //     // 'access' => \App\Models\Role::$ADMIN
+                //     // 'access' => \Porteiro\Models\Role::$ADMIN
                 // ],
                 // ],
         ],
@@ -68,7 +68,7 @@ class TecnicoServiceProvider extends ServiceProvider
                 'icon_color'  => 'blue',
                 'label_color' => 'success',
                 'section' => "admin",
-                // 'access' => \App\Models\Role::$ADMIN
+                // 'access' => \Porteiro\Models\Role::$ADMIN
             ]
         ],
     ];
