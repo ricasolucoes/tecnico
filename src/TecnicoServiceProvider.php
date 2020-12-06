@@ -38,39 +38,35 @@ class TecnicoServiceProvider extends ServiceProvider
      * Rotas do Menu
      */
     public static $menuItens = [
-        'Painel' => [
-            // 'Tecnico' => [
-                [
-                    'text'        => 'My Settings',
-                    'route'       => 'profile.tecnico.home',
-                    'icon'        => 'fas fa-fw fa-gamepad',
-                    'icon_color'  => 'blue',
-                    'label_color' => 'success',
-                    'section' => "master",
-                    // 'access' => \Porteiro\Models\Role::$ADMIN
-                ],
-                // [
-                //     'text'        => 'Root',
-                //     'route'       => 'rica.tecnico.home',
-                //     'icon'        => 'fas fa-fw fa-flag',
-                //     'icon_color'  => 'blue',
-                //     'label_color' => 'success',
-                //     'section' => "master",
-                //     // 'access' => \Porteiro\Models\Role::$ADMIN
-                // ],
-                // ],
+        // 'Tecnico' => [
+        [
+            'text'        => 'My Settings',
+            'route'       => 'profile.tecnico.home',
+            'icon'        => 'fas fa-fw fa-gamepad',
+            'icon_color'  => 'blue',
+            'label_color' => 'success',
+            'section' => "profile",
+            // 'access' => \Porteiro\Models\Role::$ADMIN
         ],
-        'Admin' => [
-            [
-                'text'        => 'Settings',
-                'route'       => 'profile.tecnico.home',
-                'icon'        => 'fas fa-fw fa-gamepad',
-                'icon_color'  => 'blue',
-                'label_color' => 'success',
-                'section' => "admin",
-                // 'access' => \Porteiro\Models\Role::$ADMIN
-            ]
-        ],
+        // [
+        //     'text'        => 'Root',
+        //     'route'       => 'rica.tecnico.home',
+        //     'icon'        => 'fas fa-fw fa-flag',
+        //     'icon_color'  => 'blue',
+        //     'label_color' => 'success',
+        //     'section' => "master",
+        //     // 'access' => \Porteiro\Models\Role::$ADMIN
+        // ],
+        // ],
+        [
+            'text'        => 'Settings',
+            'route'       => 'profile.tecnico.home',
+            'icon'        => 'fas fa-fw fa-gamepad',
+            'icon_color'  => 'blue',
+            'label_color' => 'success',
+            'section' => "admin",
+            // 'access' => \Porteiro\Models\Role::$ADMIN
+        ]
     ];
     /**
      * Bootstrap the application events.
