@@ -39,8 +39,8 @@
     "require": {
         "php": "^7.2|^8.0",
         "laravel/framework": "^6.0|^7.0|^8.0",
-        "sierratecnologia/pedreiro": "dev-master",
-        "sierratecnologia/muleta": "dev-master"
+        "sierratecnologia/pedreiro": "^0.4.0",
+        "sierratecnologia/muleta": "^0.4.0"
     },
     "require-dev": {
         "codedungeon/phpunit-result-printer": ">=0.27.0",
