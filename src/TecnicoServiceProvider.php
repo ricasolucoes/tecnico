@@ -81,8 +81,10 @@ class TecnicoServiceProvider extends ServiceProvider
 
     /**
      * Publish Tecnico configuration.
+     *
+     * @return void
      */
-    protected function publishConfig()
+    protected function publishConfig(): void
     {
         // Publish config files
         $this->publishes([
@@ -93,8 +95,10 @@ class TecnicoServiceProvider extends ServiceProvider
 
     /**
      * Publish Tecnico migration.
+     *
+     * @return void
      */
-    protected function publishMigration()
+    protected function publishMigration(): void
     {
         if (! class_exists('TecnicoSetupTables')) {
             // Publish the migration
@@ -188,7 +192,7 @@ class TecnicoServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(__DIR__.'/../publishes/config/settings-mapper.php', 'settings-mapper');
     }
 
-    private function loadViews()
+    private function loadViews(): void
     {
         // View namespace
         $viewsPath = $this->getResourcesPath('views');
@@ -200,7 +204,7 @@ class TecnicoServiceProvider extends ServiceProvider
         );
     }
     
-    private function loadTranslations()
+    private function loadTranslations(): void
     {
         // Publish lanaguage files
         $this->publishes(

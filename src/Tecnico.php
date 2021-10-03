@@ -110,8 +110,10 @@ class Tecnico
 
     /**
      * @param GroupInvite $invite
+     *
+     * @return void
      */
-    public function acceptInvite(GroupInvite $invite)
+    public function acceptInvite(GroupInvite $invite): void
     {
         $this->user()->attachGroup($invite->group);
         $invite->delete();
@@ -128,8 +130,10 @@ class Tecnico
 
     /**
      * @param GroupInvite $invite
+     *
+     * @return void
      */
-    public function denyInvite(GroupInvite $invite)
+    public function denyInvite(GroupInvite $invite): void
     {
         $invite->delete();
     }

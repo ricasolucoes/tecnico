@@ -41,9 +41,9 @@ class MakeTecnico extends Command
     /**
      * Execute the console command.
      *
-     * @return mixed
+     * @return void
      */
-    public function handle()
+    public function handle(): void
     {
         $this->createDirectories();
 
@@ -131,9 +131,11 @@ class MakeTecnico extends Command
      * Compiles the HTTP controller stubs.
      *
      * @param $stubName
+     * @param string $stubName
+     *
      * @return string
      */
-    protected function compileControllerStub($stubName)
+    protected function compileControllerStub(string $stubName): string
     {
         return str_replace(
             '{{namespace}}',
