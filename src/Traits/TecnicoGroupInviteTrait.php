@@ -9,9 +9,9 @@ trait TecnicoGroupInviteTrait
     /**
      * Has-One relations with the group model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function group()
+    public function group(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Config::get('tecnico.group_model'), 'id', 'group_id');
     }
@@ -19,9 +19,9 @@ trait TecnicoGroupInviteTrait
     /**
      * Has-One relations with the user model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function user()
+    public function user(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Config::get('tecnico.user_model'), 'email', 'email');
     }
@@ -29,9 +29,9 @@ trait TecnicoGroupInviteTrait
     /**
      * Has-One relations with the user model.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function inviter()
+    public function inviter(): \Illuminate\Database\Eloquent\Relations\HasOne
     {
         return $this->hasOne(Config::get('tecnico.user_model'), 'id', 'user_id');
     }

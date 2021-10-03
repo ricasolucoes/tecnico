@@ -30,9 +30,9 @@ trait TecnicoGroupTrait
      * Has-One relation with the user model.
      * This indicates the owner of the group.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function owner()
+    public function owner(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         $userModel = Config::get('tecnico.user_model');
         $userKeyName = ( new $userModel() )->getKeyName();
