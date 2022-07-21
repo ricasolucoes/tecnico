@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
+                <div class="card card-default">
+                    <div class="card-header clearfix">
                         Members of group "{{$group->name}}"
                         <a href="{{route('groups.index')}}" class="btn btn-sm btn-default pull-right">
                             <i class="fa fa-arrow-left"></i> Back
                         </a>
                     </div>
-                    <div class="panel-body">
+                    <div class="box-body panel-body card-body">
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -38,9 +38,9 @@
                         </table>
                     </div>
                 </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">Pending invitations</div>
-                    <div class="panel-body">
+                <div class="card card-default">
+                    <div class="card-header clearfix">Pending invitations</div>
+                    <div class="box-body panel-body card-body">
                         <table class="table table-striped">
                             <thead>
                             <tr>
@@ -63,9 +63,9 @@
                 </div>
 
 
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">Invite to group "{{$group->name}}"</div>
-                    <div class="panel-body">
+                <div class="card card-default">
+                    <div class="card-header clearfix">Invite to group "{{$group->name}}"</div>
+                    <div class="box-body panel-body card-body">
                         <form class="form-horizontal" method="post" action="{{route('groups.members.invite', $group)}}">
                             {!! csrf_field() !!}
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">

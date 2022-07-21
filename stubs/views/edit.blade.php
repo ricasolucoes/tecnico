@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Edit group {{$group->name}}</div>
-                    <div class="panel-body">
+                <div class="card card-default">
+                    <div class="box-header panel-heading card-header">Edit group {{$group->name}}</div>
+                    <div class="box-body panel-body card-body">
                         <form class="form-horizontal" method="post" action="{{route('groups.update', $group)}}">
                             <input type="hidden" name="_method" value="PUT" />
                             {!! csrf_field() !!}

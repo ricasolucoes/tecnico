@@ -4,14 +4,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading clearfix">
+                <div class="card card-default">
+                    <div class="card-header clearfix">
                         Groups
                         <a class="pull-right btn btn-default btn-sm" href="{{route('groups.create')}}">
                             <i class="fa fa-plus"></i> Create group
                         </a>
                     </div>
-                    <div class="panel-body">
+                    <div class="box-body panel-body card-body">
                         <table class="table table-striped">
                             <thead>
                                 <tr>

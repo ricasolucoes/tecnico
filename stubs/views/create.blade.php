@@ -4,9 +4,9 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Create a new group</div>
-                    <div class="panel-body">
+                <div class="card card-default">
+                    <div class="box-header panel-heading card-header">Create a new group</div>
+                    <div class="box-body panel-body card-body">
                         <form class="form-horizontal" method="post" action="{{route('groups.store')}}">
                             {!! csrf_field() !!}
 
